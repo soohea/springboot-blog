@@ -1,5 +1,6 @@
 package com.github.soohea.blog.controller;
 
+import com.github.soohea.blog.entity.LoginResult;
 import com.github.soohea.blog.entity.Result;
 import com.github.soohea.blog.entity.User;
 import com.github.soohea.blog.service.UserService;
@@ -41,9 +42,9 @@ public class AuthController {
 
         User loggedInUser = userService.getUserByUsername(authentication == null ? null : authentication.getName());
         if (loggedInUser == null) {
-            return new Result("ok", "用户未登录", false);
+            return LoginResult.success("用户未登录", false);
         } else {
-            return new Result("ok", null, true, loggedInUser);
+            return LoginResult.success(loggedInUser);
         }
 
     }
@@ -55,10 +56,10 @@ public class AuthController {
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();
         User loggedInUser = userService.getUserByUsername(userName);
         if (loggedInUser == null) {
-            return Result.failure("用户未登录");
+            return LoginResult.failure("用户未登录");
         } else {
             SecurityContextHolder.clearContext();
-            return new Result("ok", "success", false);
+            return LoginResult.success("success", false);
         }
 
     }
@@ -70,22 +71,22 @@ public class AuthController {
         String username = (String) userNameAndPassword.get("username");
         String password = (String) userNameAndPassword.get("password");
         if (username == null || password == null) {
-            return Result.failure("username/password == null");
+            return LoginResult.failure("username/password == null");
         }
         if (username.length() < 1 || username.length() > 15) {
-            return Result.failure("invalid username");
+            return LoginResult.failure("invalid username");
         }
         if (password.length() < 1 || password.length() > 15) {
-            return Result.failure("invalid password");
+            return LoginResult.failure("invalid password");
         }
 
         try {
             userService.save(username, password);
         } catch (DuplicateKeyException e) {
             e.printStackTrace();
-            return Result.failure("user already exists");
+            return LoginResult.failure("user already exists");
         }
-        return new Result("ok", "success!", false);
+        return LoginResult.success( "success!", false);
 
     }
 
@@ -99,7 +100,7 @@ public class AuthController {
         try {
             userDetails = userService.loadUserByUsername(username);
         } catch (UsernameNotFoundException e) {
-            return Result.failure("用户不存在");
+            return LoginResult.failure("用户不存在");
         }
 
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
@@ -107,10 +108,10 @@ public class AuthController {
             authenticationManager.authenticate(token);
             SecurityContextHolder.getContext().setAuthentication(token);
 
-            return new Result("ok", "登录成功", true,
+            return LoginResult.success("登录成功",
                     userService.getUserByUsername(username));
         } catch (BadCredentialsException e) {
-            return Result.failure("密码不正确");
+            return LoginResult.failure("密码不正确");
 
         }
     }

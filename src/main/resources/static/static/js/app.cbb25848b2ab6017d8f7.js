@@ -247,7 +247,7 @@ webpackJsonp([10], {
         };
         var r = n("//Fk"), a = n.n(r), o = n("mtWM"), s = n.n(o), i = n("zL8q");
         n.n(i);
-        s.a.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded", s.a.defaults.baseURL = "//blog-server.hunger-valley.com"
+        s.a.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded", s.a.defaults.baseURL = "//"
     }, rYbw: function (e, t) {
     }, tvR6: function (e, t) {
     }

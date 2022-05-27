@@ -2,7 +2,7 @@ package com.github.soohea.blog.service;
 
 
 import com.github.soohea.blog.entity.User;
-import com.github.soohea.blog.mapper.UserMapper;
+import com.github.soohea.blog.dao.UserMapper;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -46,5 +46,9 @@ public class UserService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(
                 username, user.getEncryptedPassword(), Collections.emptyList());
 
+    }
+
+    public User getUserById(Integer userId) {
+        return this.userMapper.getUserById(userId);
     }
 }
