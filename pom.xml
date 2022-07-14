@@ -59,6 +59,17 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>net.bytebuddy</groupId>
+                    <artifactId>byte-buddy</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+            <version>1.11.19</version>
         </dependency>
     </dependencies>
 
@@ -121,6 +132,8 @@
                                 <argument>-e</argument>
                                 <argument>MYSQL_ROOT_PASSWORD=my-secret-pw</argument>
                                 <argument>-e</argument>
+                                <argument>MYSQL_ROOT_HOST=%</argument>
+                                <argument>-e</argument>
                                 <argument>MYSQL_DATABASE=blog-system</argument>
                                 <argument>-p</argument>
                                 <argument>3307:3306</argument>
@@ -167,7 +180,7 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>5.2.4</version>
                 <configuration>
-                    <url>jdbc:mysql://localhost:3306/blog-system?useSSL=false&amp;allowPublicKeyRetrieval=true</url>
+                    <url>jdbc:mysql://localhost:3307/blog-system?useSSL=false&amp;allowPublicKeyRetrieval=true</url>
                     <user>root</user>
                     <password>my-secret-pw</password>
                 </configuration>
