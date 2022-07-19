@@ -184,7 +184,7 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>5.2.4</version>
                 <configuration>
-                    <url>jdbc:mysql://localhost:3307/blog-system?useSSL=false&amp;allowPublicKeyRetrieval=true</url>
+                    <url>jdbc:mysql://localhost:3308/blog-system?useSSL=false&amp;allowPublicKeyRetrieval=true</url>
                     <user>root</user>
                     <password>my-secret-pw</password>
                 </configuration>
@@ -196,7 +196,7 @@
                             <goal>migrate</goal>
                         </goals>
                         <configuration>
-                            <url>jdbc:mysql://localhost:3307/blog-system?useSSL=false&amp;allowPublicKeyRetrieval=true</url>
+                            <url>jdbc:mysql://localhost:3309/blog-system?useSSL=false&amp;allowPublicKeyRetrieval=true</url>
                             <user>root</user>
                             <password>my-secret-pw</password>
                         </configuration>
