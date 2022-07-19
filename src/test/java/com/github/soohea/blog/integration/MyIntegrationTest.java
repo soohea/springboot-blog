@@ -28,13 +28,13 @@ public class MyIntegrationTest {
         String port = environment.getProperty("local.server.port");
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:" + port +"/auth"))
+                .uri(URI.create("http://localhost:" + port + "/auth"))
                 .build();
 
-        HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        Assertions.assertEquals(200,response.statusCode());
-        Assertions.assertTrue(response.body().contains("用户没有登录"));
+        Assertions.assertEquals(200, response.statusCode());
+        Assertions.assertTrue(response.body().contains("用户未登录"));
 
     }
 }

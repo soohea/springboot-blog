@@ -140,7 +140,7 @@
                                 <argument>-e</argument>
                                 <argument>MYSQL_DATABASE=blog-system</argument>
                                 <argument>-p</argument>
-                                <argument>3307:3306</argument>
+                                <argument>3309:3306</argument>
                                 <argument>-d</argument>
                                 <argument>mysql</argument>
                             </arguments>
