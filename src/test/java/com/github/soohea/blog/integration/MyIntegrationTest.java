@@ -34,7 +34,7 @@ public class MyIntegrationTest {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         Assertions.assertEquals(200, response.statusCode());
-        Assertions.assertTrue(response.body().contains("用户未登录"));
+        Assertions.assertTrue(response.body().contains("用户没有登录"));
 
     }
 }
